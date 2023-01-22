@@ -1,4 +1,5 @@
-# DJango
+# DJango Project
+This project will read the PC properties and return JSON as response.
 
 Install Django
 * $ pip3 install Django
