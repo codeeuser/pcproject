@@ -24,9 +24,16 @@ def system_info(request):
 def system_info_json(request):
     computer_name = platform.node()
     system_name = platform.system()
-    system_version = os.uname().version
-    system_release = os.uname().release
-    system_architecture = os.uname().machine
+    
+    if (system_name=='Windows'):
+        system_version = platform.uname().version
+        system_release = platform.uname().release
+        system_architecture = platform.uname().machine
+    else:    
+        system_version = os.uname().version
+        system_release = os.uname().release
+        system_architecture = os.uname().machine
+
     
     num_cores = multiprocessing.cpu_count()
 
