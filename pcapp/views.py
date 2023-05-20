@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 import psutil
+import json
 
 # Create your views here.
 def index(request):
@@ -57,6 +58,23 @@ def system_info_json(request):
 
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
+
+    # Get the list of running processes
+    processes = []
+    for process in psutil.process_iter(['pid', 'name', 'cpu_percent']):
+        processes.append({
+            'pid': process.info['pid'],
+            'name': process.info['name'],
+            'cpu_percent': process.info['cpu_percent']
+        })
+
+    # Sort the processes by CPU percent in descending order
+    sorted_processes = sorted(processes, key=lambda p: p['cpu_percent'] is not None, reverse=True)
+
+    # Retrieve the top 10 processes
+    # top_10_processes = processes[:10]
+
+
     data = {
         "system": {
             "computer_name": computer_name,
@@ -87,6 +105,7 @@ def system_info_json(request):
             "hostname": hostname,
             "ip_address": ip_address,
         },
+        "processes": processes
     }
-    print(data)
+    # print(data)
     return JsonResponse(data, safe=False)
