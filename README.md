@@ -12,6 +12,7 @@ In Django, an app is a self-contained module that encapsulates a specific functi
 
 Start the server
 * $ python3 manage.py runserver
+* $ python3 manage.py runserver 0.0.0.0:8000
 
 # url
 * http://localhost:8000/pcapp/system_info_json
