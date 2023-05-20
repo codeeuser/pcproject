@@ -72,7 +72,7 @@ def system_info_json(request):
     sorted_processes = sorted(processes, key=lambda p: p['cpu_percent'] is not None, reverse=True)
 
     # Retrieve the top 10 processes
-    # top_10_processes = processes[:10]
+    top_10_processes = sorted_processes[:10]
 
 
     data = {
@@ -105,7 +105,7 @@ def system_info_json(request):
             "hostname": hostname,
             "ip_address": ip_address,
         },
-        "processes": processes
+        "processes": top_10_processes
     }
     # print(data)
     return JsonResponse(data, safe=False)
