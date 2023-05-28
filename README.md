@@ -16,3 +16,13 @@ Start the server
 
 # url
 * http://localhost:8000/pcapp/system_info_json
+
+# NOTE: For other project - GLANCES
+- Glances is an open-source system cross-platform monitoring tool.
+* https://github.com/nicolargo/glances
+
+* For the Web server mode, run:
+* $ glances -w
+
+## For get the JSON data on this URL
+* http://localhost:61208/api/3/all
